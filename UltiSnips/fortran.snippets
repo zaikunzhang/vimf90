@@ -1,41 +1,44 @@
-snippet prg "Program Name" b 
+snippet prg "program name" b
 !	This is file : `!v expand('%:t:r')`
 ! Author= `!v expand($USER)`
 ! Started at: `date +%d.%m.%Y`
 ! Last Modified: Sun 21 Feb 2021 20:30:36 IST
 !
-Program  ${1:`!v expand('%:t:r')`}
-Implicit None
+program ${1:`!v expand('%:t:r')`}
+implicit none
 ${2:${VISUAL}}
-End Program  ${1/([^\n$]+).*/$1/} $0
+end program ${1/([^\n$]+).*/$1/} $0
 endsnippet
 
-snippet mod "Module Name" b 
-Module  ${1:`!v expand('%:t:r')`}  !
-Implicit None
+snippet mod "module name" b
+module ${1:`!v expand('%:t:r')`}
+implicit none
+private
 ${2:${VISUAL}}
-End Module  ${1/([^\n$]+).*/$1/} $0
+end module ${1/([^\n$]+).*/$1/} $0
 endsnippet
 
-snippet sub "Subroutine name" b
-Subroutine  ${1:${VISUAL:SubroutineName}}($2)
+snippet sub "subroutine name" b
+subroutine ${1:${VISUAL:subroutineName}}($2)
+implicit none
 ${3:${VISUAL}}
-End Subroutine ${1/([^\n$]+).*/$1/} $0
+end subroutine ${1/([^\n$]+).*/$1/} $0
 endsnippet
 
-snippet fun "Function name" b
-Function  ${1:${VISUAL:FunctionName}}($2)
+snippet fun "function name" b
+function ${1:${VISUAL:FunctionName}}($2) result($3)
+implicit none
 ${2:${VISUAL}}
-End Function ${1/([^\n$]+).*/$1/} $0
+end function ${1/([^\n$]+).*/$1/} $0
 endsnippet
 
-snippet proc 
+snippet proc
 procedure ${1:${VISUAL:ProcedureName}}
 ${2:${VISUAL}}
 end procedure $1
 endsnippet
 
-snippet iface 
+snippet iface
 interface ${1:${VISUAL:InterfaceName}}
 ${2:${VISUAL}}
 end interface $1
@@ -56,48 +59,48 @@ ${3:}
 end select $0
 endsnippet
 
-snippet do  "do loop" b
+snippet do "do loop" b
 ${1:<++name++>}do ${2:<++iter++>} = ${3:<++start++>}, ${4:<++end++>}
 ${5:<++loop++>}
 end do ${1/://} $0
 endsnippet
 
-snippet dow  "do while" b
+snippet dow "do while" b
 ${1:<++name++>}do while (${2:<++condition++>})
 ${3:<++condition++>}
-end do  ${1/://} $0
+end do ${1/://} $0
 endsnippet
 
 snippet `wr "Short write" Ab
 write(${1:fp},${2:*}) ${3:<++stetement++>}
 endsnippet
 
-snippet read  "Read" b
+snippet read "Read" b
 read(${1:<++fp++>}, ${2:*}) ${3:<++statment++>}
 endsnippet
 
-snippet write  "write" b
+snippet write "write" b
 write(unit = ${1:<++fp++>}, file = ${2:<++filename++>}, iostat = ${3:<++ierr++>}) ${4:<++statment++>}
 endsnippet
 
-snippet open  "Open file" b
-open(unit = ${1:<++fp++>}, file = ${2:<++filename++>}, status = ${3:<++unknown++>}, iostat = ${4:<++ierr++>}) 
+snippet open "Open file" b
+open(unit = ${1:<++fp++>}, file = ${2:<++filename++>}, status = ${3:<++unknown++>}, iostat = ${4:<++ierr++>})
 endsnippet
 
-snippet close  "close file" b
-close(unit = ${1:<++fp++>}) 
+snippet close "close file" b
+close(unit = ${1:<++fp++>})
 endsnippet
 
 snippet `int "integer" Ab
-integer($1):: ${2:variables}
+integer($1) :: ${2:variables}
 endsnippet
 
-snippet `chr  "Character variable" Ab
-character(len=$1):: ${2:variables}
+snippet `chr "Character variable" Ab
+character(len=$1) :: ${2:variables}
 endsnippet
 
 snippet `rl "Real variable" Ab
-real($1):: ${2:variables}
+real($1) :: ${2:variables}
 endsnippet
 
 snippet `dim "Dimension" A
@@ -110,4 +113,51 @@ endsnippet
 
 snippet `sl "Select kind" A
 selected_$1_kind($2)
+endsnippet
+
+# The following snippets are by Zaikun
+snippet ipt "inputs" b
+! Inputs
+$0
+endsnippet
+
+snippet iot "in-outputs" b
+! In-outputs
+$0
+endsnippet
+
+snippet ot "outputs" b
+! Outputs
+$0
+endsnippet
+
+snippet prc "preconditions" b
+! Preconditions
+$0
+endsnippet
+
+snippet lv "local variables" b
+! Local variables
+$0
+endsnippet
+
+snippet poc "postconditions" b
+! Postconditions
+$0
+endsnippet
+
+snippet cst "calculation starts" b
+!====================!
+! Calculation starts !
+!====================!
+
+$0
+endsnippet
+
+snippet cnd "calculation ends" b
+
+!====================!
+!  Calculation ends  !
+!====================!
+$0
 endsnippet
